@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Figma → HTML 快速雛形</title>
+  <meta name="description" content="用 Tailwind CDN 快速把 Figma 設計轉成可上線的雛形頁面。" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>">
+  <!-- Tailwind CDN（零安裝） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind 自訂主題（可貼 Figma 色票）
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#eff6ff',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 可把 Figma 的字型、間距 token 貼在這裡 */
+    :root{ --radius: 16px; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100">
+  <!-- 頂部導航 -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200 dark:bg-gray-950/80 dark:border-gray-800">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="flex items-center gap-2 font-semibold">
+          <!-- inline SVG logo（Figma 的 icon 直接貼最乾淨） -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" class="fill-brand-500"></circle>
+            <path d="M12 6v12M6 12h12" class="stroke-white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>ProtoKit</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#features" class="hover:text-brand-600">特色</a>
+          <a href="#pricing" class="hover:text-brand-600">定價</a>
+          <a href="#faq" class="hover:text-brand-600">FAQ</a>
+          <button id="darkToggle" class="rounded-lg border px-3 py-1.5 text-sm hover:bg-gray-50 dark:hover:bg-gray-900">
+            🌙 / ☀️
+          </button>
+          <a href="#cta" class="inline-flex items-center rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-700">開始使用</a>
+        </nav>
+        <button id="menuBtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border hover:bg-gray-50 dark:hover:bg-gray-900">
+          ☰
+        </button>
+      </div>
+    </div>
+    <!-- 行動選單 -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-800">
+      <div class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#features" class="hover:text-brand-600">特色</a>
+        <a href="#pricing" class="hover:text-brand-600">定價</a>
+        <a href="#faq" class="hover:text-brand-600">FAQ</a>
+        <div class="flex items-center gap-3">
+          <button id="darkToggleM" class="flex-1 rounded-lg border px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-900">🌙 / ☀️</button>
+          <a href="#cta" class="flex-1 inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-700">開始使用</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="mx-auto max-w-6xl px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-gray-600 dark:text-gray-300">
+          <span class="inline-block h-2 w-2 rounded-full bg-brand-600"></span> Figma → HTML 雛形 5 分鐘上線
+        </div>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
+          把你的 Figma 變成<br class="hidden md:block" />可上線的原型頁
+        </h1>
+        <p class="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">
+          不用安裝工具、零建置。丟一個 HTML，就有 RWD、黑暗模式、行動選單與 CTA。
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href="#cta" class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-5 py-3 font-medium text-white hover:bg-brand-700">立即試用</a>
+          <a href="#features" class="inline-flex items-center justify-center rounded-lg border px-5 py-3 font-medium hover:bg-gray-50 dark:hover:bg-gray-900">看看功能</a>
+        </div>
+        <div class="mt-6 text-xs text-gray-500">* 圖片/圖示可由 Figma 以 SVG/PNG 匯出後替換</div>
+      </div>
+      <div class="relative">
+        <div class="rounded-[var(--radius)] border bg-gradient-to-br from-gray-50 to-white p-4 shadow-sm dark:from-gray-900 dark:to-gray-950 dark:border-gray-800">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Mockup" class="rounded-lg object-cover w-full h-72 md:h-96">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="border-t border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+      <h2 class="text-2xl md:text-3xl font-bold">你在 Figma 畫什麼，這裡就怎麼排</h2>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Auto-layout 對應 Flex、Grid；色票、字級、圓角都能映射。</p>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <article class="rounded-xl border p-6 dark:border-gray-800">
+          <div class="text-3xl">🧱</div>
+          <h3 class="mt-3 font-semibold">元件化</h3>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">把 Figma 的 Component 翻成可重用的樣式與區塊。</p>
+        </article>
+        <article class="rounded-xl border p-6 dark:border-gray-800">
+          <div class="text-3xl">📱</div>
+          <h3 class="mt-3 font-semibold">RWD</h3>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Mobile-first，`md:` 以上才疊加桌面樣式。</p>
+        </article>
+        <article class="rounded-xl border p-6 dark:border-gray-800">
+          <div class="text-3xl">⚡️</div>
+          <h3 class="mt-3 font-semibold">零建置</h3>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">一個 HTML 檔即可預覽與上線，適合快速驗證。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing（示意） -->
+  <section id="pricing" class="border-t border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+      <h2 class="text-2xl md:text-3xl font-bold">定價（示意）</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="rounded-xl border p-6 dark:border-gray-800">
+          <h3 class="font-semibold">個人</h3>
+          <p class="mt-2 text-3xl font-bold">$0</p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>基本元件</li><li>手動部署</li><li>社群支援</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border p-6 dark:border-gray-800 ring-2 ring-brand-600">
+          <h3 class="font-semibold">專業</h3>
+          <p class="mt-2 text-3xl font-bold">$19</p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>完整組件庫</li><li>一鍵部署</li><li>郵件支援</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border p-6 dark:border-gray-800">
+          <h3 class="font-semibold">團隊</h3>
+          <p class="mt-2 text-3xl font-bold">$49</p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>成員權限</li><li>設計 Token</li><li>優先支援</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="border-t border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-20 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold">5 分鐘架個可點的雛形</h2>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">把 Figma 的 SVG/圖片丟進來，文案改一改就能展示。</p>
+      <a href="#"
+         class="mt-6 inline-flex items-center rounded-xl bg-brand-600 px-6 py-3 font-medium text-white hover:bg-brand-700">
+        立刻上線
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-6xl px-4 py-10 text-sm text-gray-500">
+      © 2025 ProtoKit — Figma to HTML Demo
+    </div>
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const darkBtns = [document.getElementById('darkToggle'), document.getElementById('darkToggleM')];
+
+    // 行動選單
+    menuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 深色模式切換（記憶於 localStorage）
+    function setTheme(mode){
+      if(mode === 'dark'){ html.classList.add('dark'); }
+      else { html.classList.remove('dark'); }
+      localStorage.setItem('theme', mode);
+    }
+    const saved = localStorage.getItem('theme');
+    if(saved){ setTheme(saved); }
+    darkBtns.forEach(btn => btn?.addEventListener('click', () => {
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      setTheme(next);
+    }));
+  </script>
+</body>
+</html>
